@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react';
 
-// URL của backend server.js
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+// 1. Sửa tên biến thành VITE_API_URL
+// 2. Thêm '/api' vào localhost để đồng bộ với Render
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 export const useApi = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,15 +12,17 @@ export const useApi = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch(`${BACKEND_URL}/api/execute`, {
+      // 3. Bỏ chữ '/api' ở đây vì trong biến môi trường đã có rồi
+      // Kết quả sẽ là: https://...onrender.com/api/execute
+      const response = await fetch(`${API_BASE_URL}/execute`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action, payload }),
+        body: JSON.stringify({ action, payload }), // Payload cũ dùng 'action', server mới dùng 'pipeline' (nhưng server đã handle cả 2)
       });
 
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(errData.error || 'Lỗi từ server');
+        throw new Error(errData.error || errData.message || 'Lỗi từ server');
       }
 
       const data = await response.json();

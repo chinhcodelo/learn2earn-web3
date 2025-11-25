@@ -1,0 +1,30 @@
+{
+  "name": "klcn_th046_backend",
+  "version": "1.0.0",
+  "description": "Backend máy chủ cho dự án Web3 Learn-to-Earn (DAO)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "web3",
+    "dao",
+    "mern",
+    "mongodb",
+    "pipeline"
+  ],
+  "author": "Gemini AI",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

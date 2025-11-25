@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-gray-900 via-gray-900 to-indigo-950 text-gray-200 font-sans;
+  }
+  
+  /* Tạo hiệu ứng "glass" cho các card */
+  .card-glass {
+    @apply bg-gray-800/70 backdrop-blur-lg border border-gray-700/50 shadow-xl;
+  }
+
+  /* Tùy chỉnh thanh cuộn (scrollbar) */
+  /* Dành cho Chrome, Edge, Safari */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-800 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-blue-600 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-blue-500;
+  }
+  
+  /* Dành cho Firefox */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.blue.600') theme('colors.gray.800');
+  }
+}
